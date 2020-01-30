@@ -59,8 +59,8 @@ module Max_pool#(
         end      
     endgenerate
     
-    //((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH + BITWIDTH - 1 是 Highest bit。
-    //((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH 是 Lowest bit。
+    //((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH + BITWIDTH - 1 是 Highest bit index。
+    //((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH 是 Lowest bit index。
     generate 
         for(i = 0; i < DATACHANNEL; i = i + 1) begin
             for(j = 0; j < DATAHEIGHT / KHEIGHT; j = j + 1) begin
