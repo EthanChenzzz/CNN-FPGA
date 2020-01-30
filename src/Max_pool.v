@@ -59,13 +59,14 @@ module Max_pool#(
         end      
     endgenerate
     
-    
+    //((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH + BITWIDTH - 1 是 Highest bit。
+    //((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH 是 Lowest bit。
     generate 
         for(i = 0; i < DATACHANNEL; i = i + 1) begin
             for(j = 0; j < DATAHEIGHT / KHEIGHT; j = j + 1) begin
                 for(k = 0; k < DATAWIDTH / KWIDTH; k = k + 1) begin
-                    for(m = j * 2; m < j * 2 + KHEIGHT; m = m + 1) begin
-                        for(n = k * 2; n < k * 2 + KWIDTH; n = n + 1) begin
+                    for(m = j * 2; m < j * 2 + KHEIGHT; m = m + 1) begin //做KHEIGHT次
+                        for(n = k * 2; n < k * 2 + KWIDTH; n = n + 1) begin //做KWIDTH次
                             assign paramArray[i][j][k][((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH + BITWIDTH - 1:((m - j * 2) * KWIDTH + n - k * 2) * BITWIDTH] = dataArray[i][m][n];
                         end
                     end                   
