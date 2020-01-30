@@ -42,6 +42,9 @@ module Relu_activation#(
             for(j = 0; j < DATAHEIGHT; j = j + 1) begin
                 for(k = 0; k < DATAWIDTH; k = k + 1) begin
                     Relu#(BITWIDTH) relu(data[(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH + BITWIDTH - 1:(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH], result[(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH + BITWIDTH - 1:(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH]);
+                    //Call Relu module. 
+                    //#(...)represent parameter list. 
+                    //"relu" is the instantiation of "Relu" module
                 end
             end
         end
