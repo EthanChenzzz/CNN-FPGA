@@ -29,5 +29,5 @@ module Relu#(
     output signed [BITWIDTH - 1:0] result
     );
     
-    assign result = data > THRESSHOLD ? data : THRESSHOLD;
+    assign result = data > THRESSHOLD ? data : THRESSHOLD; //Threshold often = 0 , RELU = max(0,wTx+b)
 endmodule
