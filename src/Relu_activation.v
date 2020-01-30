@@ -36,6 +36,9 @@ module Relu_activation#(
     
     //wire [BITWIDTH * DATAHEIGHT * DATAWIDTH * DATACHANNEL - 1:0] out;
     
+    //每一個結果的數字都經過RELU。每一個data channel有DATAHEIGHT * DATAWIDTH個數字。每一個data height有DATAWIDTH個數字
+    //(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH + BITWIDTH - 1 為一個數字的 "highest bit"，(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH 為一個數字的 "lowest bit"。
+    //ex. i,j,k皆=0，則(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH + BITWIDTH - 1 = highest bit = 7，(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH = lowest bit = 0。
     genvar i, j, k;
     generate
         for(i = 0; i < DATACHANNEL; i = i + 1) begin
@@ -44,7 +47,7 @@ module Relu_activation#(
                     Relu#(BITWIDTH) relu(data[(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH + BITWIDTH - 1:(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH], result[(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH + BITWIDTH - 1:(i * DATAHEIGHT * DATAWIDTH + j * DATAWIDTH + k) * BITWIDTH]);
                     //Call Relu module. 
                     //#(...)represent parameter list. 
-                    //"relu" is the instantiation of "Relu" module
+                    //"relu" is the instantiation of "Relu" module.
                 end
             end
         end
