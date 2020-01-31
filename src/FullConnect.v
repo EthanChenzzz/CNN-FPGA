@@ -33,6 +33,7 @@ module FullConnect#(
     input [BITWIDTH * LENGTH - 1 : 0] data,
     input [BITWIDTH * LENGTH * FILTERBATCH - 1 : 0] weight,
     input [BITWIDTH * FILTERBATCH - 1 : 0] bias,
+    //乘法的結果，BITWIDTH變成兩倍長。
     output [BITWIDTH * 2 * FILTERBATCH - 1 : 0] result
     );
     
